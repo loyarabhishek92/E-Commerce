@@ -1,14 +1,33 @@
 import express from 'express';
+import fileUpload from 'express-fileupload';
+import mongoose from 'mongoose';
+import morgan from 'morgan';
+import productRoutes from './routes/productRoutes.js'
 
 const app = express();
 const port = 5000;
 
+app.use(express.json());
+app.use(morgan('dev'));
+app.use(fileUpload({
+    limits: {fileSize: 5*1024*1024},
+}));
+app.use(express.static('uploads'));
+
+
+//DB connection
+mongoose.connect('mongodb+srv://Abhishek:abhishek200@cluster0.d7y0puu.mongodb.net/E-Commerce').then((val) => {
+    app.listen(port , () => {
+    console.log(`Database connected and Server is running on port ${port}`);
+});
+}).catch((err) => {
+    console.log(err);
+});
+
 app.get('/', (req, res) => {
     return res.status(200).json({
-        message: 'Hello world'
+        message: 'Hello!, Welcome to E-Commerce API',
     })
 });
 
-app.listen(port , () => {
-    console.log(`Server is running on port ${port}`);
-});
+app.use('/api/products', productRoutes);
