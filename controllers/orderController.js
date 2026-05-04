@@ -3,14 +3,14 @@ import Order from "../models/Order.js";
 
 
 export const createOrder = async (req, res) => {
-    const {totalAmount, products} = req.body;
+    const { totalAmount, products } = req.body;
 
     try {
-        await Order.create({userId: req.userId, totalAmount, products});
-        return res.status(200).json({message: 'Order created'});
+        await Order.create({ userId: req.userId, totalAmount, products });
+        return res.status(200).json({ message: 'Order created' });
 
     } catch (err) {
-        return res.status(400).json({message: err.message});
+        return res.status(400).json({ message: err.message });
     }
 }
 
@@ -35,7 +35,7 @@ export const getOrders = async (req, res) => {
                     model: 'Product',
                 }
             ]);
-            return res.status(200).json({orders});
+            return res.status(200).json({ orders });
         } else {
             const orders = await Order.find({}).populate([
                 {
@@ -59,7 +59,7 @@ export const getOrders = async (req, res) => {
 
 
 export const getOrder = async (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
 
     try {
         const order = await Order.findById(id).populate([
@@ -73,9 +73,9 @@ export const getOrder = async (req, res) => {
                 model: 'Product',
             }
         ]);
-        return res.status(200).json({order});
-        
+        return res.status(200).json({ order });
+
     } catch (err) {
-        return res.status(400).json({message: err.message});
+        return res.status(400).json({ message: err.message });
     }
 }

@@ -9,8 +9,8 @@ const router = express.Router();
 router.route('/').get(userCheck, getOrders).post(userCheck, createOrder).all(methodNotAllow);
 
 router.param('id', (req, res, next, id) => {
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(400).json({message: 'Invalid order id'});
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ message: 'Invalid order id' });
     }
     req.productId = id;
     next();
