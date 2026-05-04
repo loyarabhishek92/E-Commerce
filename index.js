@@ -15,7 +15,7 @@ app.use(fileUpload({
     limits: { fileSize: 5 * 1024 * 1024 },
 }));
 app.use(express.static('uploads'));
-//
+
 
 //DB connection
 mongoose.connect('mongodb+srv://Abhishek:abhishek200@cluster0.d7y0puu.mongodb.net/E-Commerce').then((val) => {
