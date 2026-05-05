@@ -9,6 +9,7 @@ import { Spinner } from "@/components/ui/spinner.jsx";
 import { useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { toast } from "sonner";
+import { registerValidator } from "@/lib/formValidator.js";
 
 export default function Register() {
   const [show, setShow] = useState(false);
@@ -44,6 +45,9 @@ export default function Register() {
               toast.error(err.data.message);
             }
           }}
+
+            validationSchema={registerValidator}
+
           >
             {({handleChange, handleSubmit, values, touched, errors}) => {
               return <form onSubmit={handleSubmit}>
@@ -58,6 +62,7 @@ export default function Register() {
                       type="text"
                       placeholder="Mohan sapkota"
                     />
+                    {errors.username && touched.username && <p className="text-red-500">{errors.username}</p>}
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="email">Email</Label>
@@ -69,6 +74,7 @@ export default function Register() {
                       type="email"
                       placeholder="m@example.com"
                     />
+                    {errors.email && touched.email && <p className="text-red-500">{errors.email}</p>}
                   </div>
                   <div className="grid gap-2">
                     <div className="flex items-center">
@@ -93,7 +99,7 @@ export default function Register() {
                         {show ? <EyeIcon /> : <EyeOffIcon />}
                       </Button>
                     </div>
-                    
+                    {errors.password && touched.password && <p className="text-red-500">{errors.password}</p>}
                   </div>
 
                   <CardFooter className="flex-col gap-2">
