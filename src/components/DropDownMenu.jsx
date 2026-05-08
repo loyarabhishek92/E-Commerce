@@ -77,8 +77,12 @@ export default function DropDownMenu({ user }) {
                             onClick={() => {
                                 switch (item.property) {
                                     case 'Profile':
-                                        
+                                        nav('/profile');
                                         break;
+
+                                        case 'Admin Panel':
+                                            nav('/admin')
+                                            break;
 
                                         default:
                                             break;
