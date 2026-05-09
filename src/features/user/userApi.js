@@ -7,7 +7,7 @@ const userApi = mainApi.injectEndpoints({
             query: (token) => ({
                 url: '/user/profile',
                 method: 'GET',
-                headers: {Authorization: token},
+                headers: {authorization: token},
             }),
             providesTags: ['User'],
         }),
@@ -17,7 +17,7 @@ const userApi = mainApi.injectEndpoints({
                 url: '/user/profile',
                 method: 'PATCH',
                 body: q.body,
-                headers: {Authorization: q.token},
+                headers: {authorization: q.token},
             }),
             invalidatesTags: ['User'],
         }),

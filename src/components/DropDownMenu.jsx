@@ -74,22 +74,30 @@ export default function DropDownMenu({ user }) {
                     <DropdownMenuGroup>
                         {litsItems.map((item, index) => (
                             <DropdownMenuItem
-                            onClick={() => {
-                                switch (item.property) {
-                                    case 'Profile':
-                                        nav('/profile');
-                                        break;
+                                onClick={() => {
+                                    switch (item.property) {
+                                        case 'Profile':
+                                            nav('/profile');
+                                            break;
 
                                         case 'Admin Panel':
-                                            nav('/admin')
+                                            nav('/admin');
+                                            break;
+
+                                        case 'Cart':
+                                            nav('/cart');
+                                            break;
+
+                                        case 'Orders':
+                                            nav('/orders');
                                             break;
 
                                         default:
                                             break;
-                                }
-                            }}
+                                    }
+                                }}
 
-                            key={index}>
+                                key={index}>
                                 <item.icon />
                                 <span className="text-popover-foreground">{item.property}</span>
                             </DropdownMenuItem>
@@ -99,6 +107,8 @@ export default function DropDownMenu({ user }) {
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
                         onClick={() => dispatch(removeUser())}
+                        
+                        
                     >
                         <LogOutIcon />
                         Sign Out

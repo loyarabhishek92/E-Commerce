@@ -233,7 +233,7 @@ export default function Edit() {
 
                   <CardFooter className="flex-col gap-2">
                     <Button disabled={updateLoading} type="submit" className="w-full">
-                      {updateLoading ? <Spinner /> : "Update"}
+                      {updateLoading ? <Spinner /> && <h1>Updating....</h1> : "Update"}
                     </Button>
                   </CardFooter>
                 </div>
