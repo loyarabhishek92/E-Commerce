@@ -14,7 +14,7 @@ import { registerValidator } from "@/lib/formValidator.js";
 export default function Register() {
   const [show, setShow] = useState(false);
   const nav = useNavigate();
-  const [registerUser, {isLoading}] = useRegisterMutation();
+  const [registerUser, { isLoading }] = useRegisterMutation();
   return (
     <div className="pt-2 flex justify-end">
       <Card className="w-full max-w-sm">
@@ -30,46 +30,75 @@ export default function Register() {
         <CardContent>
 
           <Formik
-          initialValues={{
-            username: '',
-            email: '',
-            password: ''
-          }}
-          onSubmit={async (val, {resetForm}) => {
-            try {
-              await registerUser(val).unwrap();
-              toast.success('Registration successfully');
-              nav(-1);
-              resetForm();
-            } catch (err) {
-              toast.error(err.data.message);
-            }
-          }}
+            initialValues={{
+              username: '',
+              email: '',
+              password: '',
+              image: '',
+            }}
+            onSubmit={async (val, { resetForm }) => {
+
+              const formDate = new FormData();
+              formDate.append('username', val.username);
+              formDate.append('image', val.image);
+              formDate.append('email', val.email);
+              formDate.append('password', val.password);
+
+            
+              try {
+                await registerUser({body: formDate}).unwrap();
+                toast.success('Registration successfully');
+                nav(-1);
+                resetForm();
+              } catch (err) {
+                toast.error('error');
+              }
+            }}
 
             validationSchema={registerValidator}
 
           >
-            {({handleChange, handleSubmit, values, touched, errors}) => {
+            {({ handleChange, handleSubmit, values, touched, errors, setFieldValue }) => {
               return <form onSubmit={handleSubmit}>
                 <div className="flex flex-col gap-6">
                   <div className="grid gap-2">
                     <Label htmlFor="username">Username</Label>
                     <Input
-                    onChange={handleChange}
-                    value={values.username}
-                    name='username'
+                      onChange={handleChange}
+                      value={values.username}
+                      name='username'
                       id="username"
                       type="text"
                       placeholder="Mohan sapkota"
                     />
                     {errors.username && touched.username && <p className="text-red-500">{errors.username}</p>}
                   </div>
+
+                  <div className="grid gap-2">
+                    <Label htmlFor="image">Select Image</Label>
+                    <Input
+                      name="image"
+
+                      onChange={(e) => {
+                        const file = e.target.files[0];
+
+                        // setFieldValue('imageReview', URL.createObjectURL(file));
+                        setFieldValue('image', file)
+                      }}
+                      type="file"
+                      placeholder="image"
+                    />
+
+                    {errors.image && touched.image && <p className="text-destructive">{errors.image}</p>}
+                  </div>
+
+
                   <div className="grid gap-2">
                     <Label htmlFor="email">Email</Label>
                     <Input
-                    onChange={handleChange}
-                    value={values.email}
-                    name='email'
+                      onChange={handleChange}
+                      value={values.email}
+                      name='email'
                       id="email"
                       type="email"
                       placeholder="m@example.com"
@@ -81,20 +110,20 @@ export default function Register() {
                       <Label htmlFor="password">Password</Label>
                     </div>
                     <div className="relative">
-                      <Input 
-                      onChange={handleChange}
-                      value={values.password}
-                      name='password'
-                      id="password" 
-                      type={show ? 'text' : 'password'}
-                      placeholder= 'password' />
+                      <Input
+                        onChange={handleChange}
+                        value={values.password}
+                        name='password'
+                        id="password"
+                        type={show ? 'text' : 'password'}
+                        placeholder='password' />
 
                       <Button
-                      type='button'
-                      variant="ghost"
-                      size="icon"
-                      onClick = {() => setShow(!show)}
-                      className='text-muted-foreground focus-visible:ring-ring/50 absolute inset-y-0 right-0 rounded-l-none hover:bg-transparent'
+                        type='button'
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => setShow(!show)}
+                        className='text-muted-foreground focus-visible:ring-ring/50 absolute inset-y-0 right-0 rounded-l-none hover:bg-transparent'
                       >
                         {show ? <EyeIcon /> : <EyeOffIcon />}
                       </Button>

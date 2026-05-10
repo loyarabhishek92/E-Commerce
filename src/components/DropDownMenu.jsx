@@ -3,8 +3,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar.jsx";
 import { Button } from "./ui/button.jsx";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu.jsx";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "@/features/user/userSlice.js";
+import { base } from "@/app/mainApi.js";
 
 
 const adminItems = [
@@ -59,14 +60,23 @@ export default function DropDownMenu({ user }) {
     const nav = useNavigate();
     const dispatch = useDispatch();
     const litsItems = user.role === 'admin' ? adminItems : userItems;
+
+
+    const logOut = () => {
+        dispatch(removeUser());
+        nav('/');
+    }
+
+
+
     return (
         <div>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon" className="rounded-full">
                         <Avatar>
-                            <AvatarImage src="https://github.com/shadcn.png" alt="shadcn" />
-                            <AvatarFallback>LR</AvatarFallback>
+                            <AvatarImage src={`${base}/${user.image}`} alt={user.fallback} />
+                            <AvatarFallback>LF</AvatarFallback>
                         </Avatar>
                     </Button>
                 </DropdownMenuTrigger>
@@ -106,7 +116,7 @@ export default function DropDownMenu({ user }) {
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
-                        onClick={() => dispatch(removeUser())}
+                        onClick={logOut}
                         
                         
                     >

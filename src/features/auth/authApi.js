@@ -7,8 +7,9 @@ const authApi = mainApi.injectEndpoints({
             query: (credentials) => ({
                 url: '/user/register',
                 method: 'POST',
-                body: credentials,
+                body: credentials.body,
             }),
+            invalidatesTags: ['Register'],
         }),
 
         login: builder.mutation({

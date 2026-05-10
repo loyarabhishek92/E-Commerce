@@ -22,7 +22,7 @@ export default function AdminPage() {
     return (
         <div className="pt-10">
             <div className="flex justify-end">
-                <Button onClick={() => nav('/form/add')}>Add product</Button>
+                <Button onClick={() => nav('/form/add')} className= 'bg-blue-700'>Add product</Button>
             </div>
             <Table>
                 <TableHeader>

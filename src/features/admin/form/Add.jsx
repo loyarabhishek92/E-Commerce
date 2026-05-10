@@ -77,7 +77,8 @@ export default function Add() {
                             formData.append('description', val.description);
                             formData.append('category', val.category);
                             formData.append('brand', val.brand);
-                            formData.append('price', val.price); formData.append('stock', val.stock);
+                            formData.append('price', val.price); 
+                            formData.append('stock', val.stock);
                             formData.append('image', val.image);
 
                             try {
