@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
@@ -14,8 +15,11 @@ app.use(morgan('dev'));
 app.use(fileUpload({
     limits: { fileSize: 5 * 1024 * 1024 },
 }));
-app.use(express.static('uploads'));
-
+app.use(express.static('uploads/products'));
+app.use(express.static('uploads/users'));
+app.use(cors({
+    origin: ['http://localhost:5173'],
+}));
 
 //DB connection
 mongoose.connect('mongodb+srv://Abhishek:abhishek200@cluster0.d7y0puu.mongodb.net/E-Commerce').then((val) => {

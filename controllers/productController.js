@@ -19,7 +19,7 @@ export const createProduct = async (req, res) => {
         return res.status(200).json({ message: 'Product created' });
 
     } catch (err) {
-        await removeFile(`./uploads/${req.imagePath}`, res);
+        await removeFile(`./uploads/products/${req.imagePath}`, res);
         return res.status(400).json({ message: err.message });
     }
 }
@@ -67,7 +67,7 @@ export const updateProduct = async (req, res) => {
 
         if (!isExist) {
             if (req.imagePath) {
-                await removeFile(`./uploads/${req.imagePath}`, res);
+                await removeFile(`./uploads/products/${req.imagePath}`, res);
                 return res.status(404).json({ message: 'Product not found' });
             } else {
                 return res.status(404).json({ message: 'Product not found' });
@@ -83,7 +83,7 @@ export const updateProduct = async (req, res) => {
         isExist.stock = stock || isExist.stock;
 
         if (req.imagePath) {
-            await removeFile(`./uploads/${isExist.image}`, res);
+            await removeFile(`./uploads/products/${isExist.image}`, res);
             isExist.image = req.imagePath;
             isExist.save();
             return res.status(200).json({ message: 'Product updated successfully' });
@@ -109,7 +109,7 @@ export const deleteProduct = async (req, res) => {
         }
 
         if (isExist.image) {
-            await removeFile(`./uploads/${isExist.image}`);
+            await removeFile(`./uploads/products/${isExist.image}`);
         }
 
         await isExist.deleteOne();
