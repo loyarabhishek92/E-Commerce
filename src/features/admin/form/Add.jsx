@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input.jsx";
 import { Label } from "@/components/ui/label.jsx";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select.jsx";
 import { Spinner } from "@/components/ui/spinner.jsx";
+import { Textarea } from "@/components/ui/textarea.jsx";
 import { useAddProductMutation } from "@/features/product/productApi.js";
 import { Formik } from "formik";
 import { useSelector } from "react-redux";
@@ -15,12 +16,16 @@ import * as Yup from 'yup';
 
 export const categories = [
     'Electronics',
-    'Clothing',
+    'Electrical',
+    'Networking',
 ];
 
 export const brands = [
     'Apple',
-    'Puma'
+    'IBM',
+    'HP',
+    'Dell',
+    
 ];
 
 
@@ -113,7 +118,7 @@ export default function Add() {
 
                                     <div className="grid gap-2">
                                         <Label htmlFor="description">Description</Label>
-                                        <Input
+                                        <Textarea
                                             onChange={handleChange}
                                             value={values.description}
                                             name='description'
