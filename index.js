@@ -21,7 +21,7 @@ app.use(fileUpload({
 app.use(express.static('uploads/products'));
 app.use(express.static('uploads/users'));
 app.use(cors({
-    origin: ['http://localhost:5173'],
+    origin: ['http://localhost:5173', 'https://e-commerce-cyan-two-40.vercel.app'],
 }));
 
 //DB connection
