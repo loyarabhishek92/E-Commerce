@@ -44,8 +44,8 @@ export default function Edit() {
 
 
   return (
-    <div>
-      <Card className="w-full max-w-sm">
+    <div className="mt-5">
+      <Card className="w-full">
         <CardHeader>
           <CardTitle>Edit your products</CardTitle>
           <CardDescription>
@@ -97,7 +97,7 @@ export default function Edit() {
           >
             {({ values, errors, touched, handleChange, handleSubmit, setFieldValue }) => (
               <form onSubmit={handleSubmit}>
-                <div className="flex flex-col gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
                   <div className="grid gap-2">
                     <Label htmlFor="title">Title</Label>
                     <Input
@@ -228,15 +228,16 @@ export default function Edit() {
 
                     {errors.image && touched.image && <p className="text-destructive">{errors.image}</p>}
                   </div>
-
-
-
-                  <CardFooter className="flex-col gap-2">
-                    <Button disabled={updateLoading} type="submit" className="w-full">
-                      {updateLoading ? <Spinner /> && <h1>Updating....</h1> : "Update"}
-                    </Button>
-                  </CardFooter>
                 </div>
+
+
+                <div className="w-full flex justify-end  mt-5">
+                  <Button disabled={updateLoading} type="submit" className="bg-blue-900 p-5">
+                    {updateLoading ? <Spinner /> && <h1>Updating....</h1> : "Update"}
+                  </Button>
+                </div>
+                
+
 
 
               </form>

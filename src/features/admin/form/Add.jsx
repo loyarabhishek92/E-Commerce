@@ -25,7 +25,7 @@ export const brands = [
     'IBM',
     'HP',
     'Dell',
-    
+
 ];
 
 
@@ -53,8 +53,8 @@ export default function Add() {
 
 
     return (
-        <div>
-            <Card className="w-full max-w-sm">
+        <div className="mt-5">
+            <Card className="w-full">
                 <CardHeader>
                     <CardTitle>Add your product</CardTitle>
                     <CardDescription>
@@ -82,7 +82,7 @@ export default function Add() {
                             formData.append('description', val.description);
                             formData.append('category', val.category);
                             formData.append('brand', val.brand);
-                            formData.append('price', val.price); 
+                            formData.append('price', val.price);
                             formData.append('stock', val.stock);
                             formData.append('image', val.image);
 
@@ -102,7 +102,7 @@ export default function Add() {
                     >
                         {({ handleChange, handleSubmit, values, errors, touched, setFieldValue }) => (
                             <form onSubmit={handleSubmit}>
-                                <div className="flex flex-col gap-6">
+                                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
                                     <div className="grid gap-2">
                                         <Label htmlFor="title">Title</Label>
                                         <Input
@@ -229,15 +229,18 @@ export default function Add() {
                                         {errors.image && touched.image && <p className="text-destructive">{errors.image}</p>}
                                     </div>
 
-
-
-                                    <CardFooter className="flex-col gap-2">
-                                        <Button
-                                            disabled={isLoading} type="submit" className="w-full">
-                                            {isLoading ? <Spinner /> : 'Add'}
-                                        </Button>
-                                    </CardFooter>
                                 </div>
+
+
+                                <div className="w-full flex justify-end mt-5">
+
+                                    <Button
+                                        disabled={isLoading} type="submit" className="bg-blue-900 p-5">
+                                        {isLoading ? <Spinner /> : 'Add'}
+                                    </Button>
+
+                                </div>
+
 
 
                             </form>
