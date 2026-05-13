@@ -3,12 +3,17 @@ import { useGetProductsQuery } from "../product/productApi.js"
 import { Skeleton } from "@/components/ui/skeleton.jsx";
 import { base } from "@/app/mainApi.js";
 import { Badge } from "@/components/ui/badge.jsx";
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
+import SearchProduct from "./SearchProduct.jsx";
+
 
 export default function Home() {
 
+
   const nav = useNavigate();
-  const {data, isLoading, error} = useGetProductsQuery();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('search');
+  const {data, isLoading, error} = useGetProductsQuery({search: searchParams.get('search') ?? ''});
   
 
 // Loading UI
@@ -37,22 +42,26 @@ export default function Home() {
 
   return (
     <div className="py-5">
+
+      <SearchProduct setSearchParams={setSearchParams} />
+
+
       {/* Header */}
       <h1 className="text-3xl font-bold mb-6">🛍️ Products</h1>
 
        {data?.products.length === 0 && (
-        <div className="flex items-center justify-center h-[60vh] text-red-500 text-lg">
+         <div className="flex items-center justify-center h-[60vh] text-red-500 text-lg">
           No products found
         </div>
       )}
 
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {data?.products.map((product) => (
           <Card
             onClick={() => nav(`/product/${product._id}`)}
             key={product._id}
-            className="overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition duration-300 group cursor-pointer"
+            className="overflow-hidden border-1 border-[rgba(255,165,0,0.5)] rounded-2xl shadow-md hover:shadow-xl transition duration-300 group cursor-pointer"
           >
             {/* Image */}
             <div className="h-48 overflow-hidden">
