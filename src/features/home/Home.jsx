@@ -56,12 +56,12 @@ export default function Home() {
       )}
 
 
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {data?.products.map((product) => (
           <Card
             onClick={() => nav(`/product/${product._id}`)}
             key={product._id}
-            className="overflow-hidden border-1 border-[rgba(255,165,0,0.5)] rounded-2xl shadow-md hover:shadow-xl transition duration-300 group cursor-pointer"
+            className=" overflow-hidden border-1 border-[rgba(255,165,0,0.5)] rounded-2xl shadow-md hover:shadow-xl transition duration-300 group cursor-pointer"
           >
             {/* Image */}
             <div className="h-48 overflow-hidden">

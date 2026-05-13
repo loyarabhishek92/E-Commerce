@@ -4,7 +4,7 @@ import Footer from "./Footer.jsx";
 
 export default function RootLayout() {
   return (
-    <div className="sm:px-5 md:px-15 lg:px-30">
+    <div className="px-2 sm:px-10 md:px-20 lg:px-50">
       <Header />
       <Outlet />
       <Footer />
