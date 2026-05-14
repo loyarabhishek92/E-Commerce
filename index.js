@@ -6,12 +6,18 @@ import morgan from 'morgan';
 import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
+import rateLimit from 'express-rate-limit';
 
 const app = express();
 const port = 5000;
 
 
-
+const limiter = rateLimit({
+    limit: 5,
+    windowMs: 10*60*100,
+    message: 'To many requests form this IP, please try again after an hours',
+});
+app.use(limiter);
 
 app.use(express.json());
 app.use(morgan('dev'));
