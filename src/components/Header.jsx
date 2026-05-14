@@ -12,7 +12,7 @@ export default function Header() {
 
       <div className="flex items-center">
         <img src="/logobgremover.png" alt="logo" className="h-15 w-15" />
-        <NavLink to={'/'} className="font-extrabold font-serif text-orange-500">Networking Hub</NavLink>
+        <NavLink to={'/'} className='font-extrabold font-serif text-orange-500'>Networking Hub</NavLink>
       </div>
 
 
