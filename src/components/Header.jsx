@@ -11,7 +11,7 @@ export default function Header() {
     <div className="px-5 mt-1.5 flex justify-between items-center sticky top-0 z-1 bg-gray-100 rounded-b-2xl flex-wrap">
 
       <div className="flex items-center">
-        <img src="/logobgremover.png" alt="" />
+        <img src="/public/logobgremover.png" alt="" />
         <NavLink to={'/'} className='font-extrabold font-serif text-orange-500'>Networking Hub</NavLink>
       </div>
 
