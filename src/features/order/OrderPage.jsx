@@ -20,7 +20,7 @@ export default function OrderPage() {
       <h1 className="text-3xl font-bold">My Orders</h1>
 
       {orders?.orders?.map((order) => (
-        <Card key={order._id} className="shadow-md">
+        <Card key={order?._id} className="shadow-md">
 
           {/* Header */}
           <CardHeader className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -28,18 +28,18 @@ export default function OrderPage() {
             {/* User Info */}
             <div className="flex items-center gap-4">
               <Avatar>
-                <AvatarImage src={`${base}/${order.userId.image}`} />
+                <AvatarImage src={`${base}/${order?.userId.image}`} />
                 <AvatarFallback>
-                  {order.userId.username?.charAt(0)}
+                  {order?.userId.username?.charAt(0)}
                 </AvatarFallback>
               </Avatar>
 
               <div>
                 <p className="font-semibold">
-                  {order.userId.username}
+                  {order?.userId.username}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  {order.userId.email}
+                  {order?.userId.email}
                 </p>
               </div>
             </div>
@@ -50,7 +50,7 @@ export default function OrderPage() {
                 Order ID
               </p>
               <p className="font-medium">
-                {order._id}
+                {order?._id}
               </p>
 
               <Badge className="mt-2">Placed</Badge>
@@ -73,34 +73,34 @@ export default function OrderPage() {
 
                   {/* Image */}
                   <img
-                    src={`${base}/${product.image}`}
+                    src={`${base}/${product?.image}`}
                     className="w-20 h-20 object-cover rounded-md border"
-                    alt={product.title}
+                    alt={product?.title}
                   />
 
                   {/* Info */}
                   <div className="flex-1">
 
                     <h2 className="font-semibold">
-                      {product.title}
+                      {product?.title}
                     </h2>
 
                     <p className="text-sm text-muted-foreground">
-                      {product.category} • {product.brand}
+                      {product?.category} • {product?.brand}
                     </p>
 
                     <p className="text-sm text-gray-500">
-                      Qty: {item.quantity}
+                      Qty: {item?.quantity}
                     </p>
                   </div>
 
                   {/* Price */}
                   <div className="text-right">
                     <p className="font-medium">
-                      Rs {product.price}
+                      Rs {product?.price}
                     </p>
                     <p className="text-sm text-gray-500">
-                      Rs {product.price * item.quantity}
+                      Rs {product?.price * item?.quantity}
                     </p>
                   </div>
 
@@ -113,13 +113,13 @@ export default function OrderPage() {
             {/* Total */}
             <div className="flex justify-between items-center text-lg font-semibold">
               <span>Total Amount</span>
-              <span>Rs {order.totalAmount}</span>
+              <span>Rs {order?.totalAmount}</span>
             </div>
 
             {/* Date */}
             <div className="text-sm text-gray-500 text-right">
               Ordered on:{" "}
-              {new Date(order.createdAt).toLocaleDateString()}
+              {new Date(order?.createdAt).toLocaleDateString()}
             </div>
 
           </CardContent>
