@@ -7,7 +7,7 @@ import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 
 const app = express();
-const port = 5000;
+const port = 50000;
 
 app.use(express.json());
 app.use(morgan('dev'));
