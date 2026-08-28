@@ -25,7 +25,7 @@ export default function Login() {
     <div className="pt-2 flex justify-end">
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
+          <CardTitle>Login to your </CardTitle>
           <CardDescription>
             Enter your email below to login to your account
           </CardDescription>
