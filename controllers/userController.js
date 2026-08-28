@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { removeFile } from "../utils/removeFile.js";
 
 
 export const register = async (req, res) => {
@@ -14,10 +15,11 @@ export const register = async (req, res) => {
         }
 
         const hashedPassword = bcrypt.hashSync(password, 10);
-        await User.create({username, email, password:hashedPassword});
+        await User.create({username, email, password:hashedPassword, image: req.imagePath});
 
         return res.status(200).json({message: 'User created successfully'});
     } catch (err) {
+         await removeFile(`./uploads/users/${req.imagePath}`, res);
         return res.status(400).json({message: err.message});
     }
 }
@@ -51,6 +53,7 @@ export const login = async (req, res) => {
 
         return res.status(200).json({
             role: isExist.role,
+            image: isExist.image,
             token,
         });
     } catch (err) {
@@ -77,7 +80,7 @@ export const getUser = async (req, res) => {
 
 
 export const updateUser = async (req, res) => {
-    const {username, email} = req.body || {};
+    const {username, email, image} = req.body || {};
 
     try {
         const isExist = await User.findById(req.userId);
@@ -88,6 +91,7 @@ export const updateUser = async (req, res) => {
 
         isExist.username = username || isExist.username;
         isExist.email = email || isExist.email;
+        isExist.image = image || isExist.image;
         await isExist.save();
         
         return res.status(200).json({message: 'User updated successfully'});

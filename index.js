@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
@@ -9,13 +10,17 @@ import orderRoutes from './routes/orderRoutes.js';
 const app = express();
 const port = 5000;
 
+
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(fileUpload({
     limits: { fileSize: 5 * 1024 * 1024 },
 }));
-app.use(express.static('uploads'));
-
+app.use(express.static('uploads/products'));
+app.use(express.static('uploads/users'));
+app.use(cors({
+    origin: ['http://localhost:5173', 'https://e-commerce-cyan-two-40.vercel.app'],
+}));
 
 //DB connection
 mongoose.connect('mongodb+srv://Abhishek:abhishek200@cluster0.d7y0puu.mongodb.net/E-Commerce').then((val) => {

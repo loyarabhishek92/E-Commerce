@@ -2,12 +2,15 @@ import mongoose from "mongoose";
 
 export const categories = [
     "Electronics",
-    "Clothing",
+    "Electrical",
+    "Networking",
 ];
 
 export const brands = [
+    "IBM",
+    "Dell",
+    "HP",
     "Apple",
-    "Puma",
 ];
 
 const productSchema = new mongoose.Schema(

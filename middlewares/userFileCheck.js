@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const supportedTypes = ['.jpg', '.png', '.jpeg', '.webp', '.gif', '.svg']
 
-export const fileCheck = (req, res, next) => {
+export const userFileCheck = (req, res, next) => {
     const file = req.files?.image;
 
     if (!file) {
@@ -18,7 +18,7 @@ export const fileCheck = (req, res, next) => {
 
     const imagePath = `${uuidv4()}-${file.name}`;
 
-    file.mv(`./uploads/${imagePath}`, (err) => {
+    file.mv(`./uploads/users/${imagePath}`, (err) => {
         if (err) {
             return res.status(400).json({ message: err.message });
         } else {
@@ -29,7 +29,7 @@ export const fileCheck = (req, res, next) => {
 }
 
 
-export const updateFileCheck = (req, res, next) => {
+export const userUpdateFileCheck = (req, res, next) => {
     const file = req.files?.image;
 
     if(!file){
@@ -44,7 +44,7 @@ export const updateFileCheck = (req, res, next) => {
 
     const imagePath = `${uuidv4()}-${file.name}`;
 
-    file.mv(`./uploads/${imagePath}`, (err) => {
+    file.mv(`./uploads/users/${imagePath}`, (err) => {
         if(err) {
             return res.status(500).json({message: err.message});
         }else {
