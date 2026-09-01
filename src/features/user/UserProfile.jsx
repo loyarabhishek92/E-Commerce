@@ -108,7 +108,7 @@ export default function UserProfile() {
             </Card>}
 
             
-                        {error?.data?.message}
+                        {/* {error?.data?.message} */}
 
         </div>
     )
