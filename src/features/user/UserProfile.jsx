@@ -37,8 +37,8 @@ export default function UserProfile() {
 
                     <Formik
                         initialValues={{
-                            username: data.username,
-                            email: data.email,
+                            username: data?.username,
+                            email: data?.email,
                         }}
 
                         onSubmit={async (val) => {
