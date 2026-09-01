@@ -28,18 +28,18 @@ export default function OrderPage() {
             {/* User Info */}
             <div className="flex items-center gap-4">
               <Avatar>
-                <AvatarImage src={`${base}/${order?.userId.image}`} />
+                <AvatarImage src={`${base}/${order?.userId?.image}`} />
                 <AvatarFallback>
-                  {order?.userId.username?.charAt(0)}
+                  {order?.userId?.username.charAt(0)}
                 </AvatarFallback>
               </Avatar>
 
               <div>
                 <p className="font-semibold">
-                  {order?.userId.username}
+                  {order?.userId?.username}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  {order?.userId.email}
+                  {order?.userId?.email}
                 </p>
               </div>
             </div>
