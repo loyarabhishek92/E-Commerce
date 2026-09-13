@@ -1,3 +1,4 @@
+import logo from '@/assets/logobgremover.png';
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router";
 import DropDownMenu from "./DropDownMenu.jsx";
@@ -11,7 +12,7 @@ export default function Header() {
     <div className="px-5 mt-1.5 flex justify-between items-center sticky top-0 z-1 bg-gray-100 rounded-b-2xl flex-wrap">
 
       <div className="flex items-center">
-        <img src="/logobgremover.png" alt="logo" className="w-15 h-15 object-contain" />
+        <img src={logo} alt="logo" className="w-15 h-15 object-contain" />
         <NavLink to={'/'} className='font-extrabold font-serif text-orange-500'>Networking Hub</NavLink>
       </div>
 
